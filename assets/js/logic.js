@@ -74,7 +74,6 @@ function renderQuestion() {
 
 function submitAnswer(event) {
     if (event.target.classList.contains("correct")) {
-        console.log("score up");
         score+=10;
     } else {
         console.log("time down");
