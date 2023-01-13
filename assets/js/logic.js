@@ -3,6 +3,7 @@ let questionTitle = document.getElementById("question-title");
 let choices = document.getElementById("choices");
 let startScreen = document.getElementById("start-screen");
 let quiz = document.getElementById("questions");
+let score = 0;
 const questionChoices = ["answerA", "answerB", "answerC", "answerD"];
 
 
@@ -56,12 +57,11 @@ function renderQuestion() {
         let questionData = questions[question];
         console.log(questionData);
         questionTitle.textContent = questionData.question;
-        document.createElement("ol");
         for (let i=0; i<questionChoices.length;i++) {
-            let li = document.createElement("li");
+            let button = document.createElement("button");
             let answerOption = questionChoices[i];
-            li.textContent = questionData[answerOption];
-            choices.appendChild(li);
+            button.textContent = `${i+1}. ${questionData[answerOption]}`;
+            choices.appendChild(button);
         }
         
     }
