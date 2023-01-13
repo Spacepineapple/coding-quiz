@@ -40,3 +40,6 @@ let questions = {
 
     }
 }
+
+//Export the questions module
+module.exports = {questions};
