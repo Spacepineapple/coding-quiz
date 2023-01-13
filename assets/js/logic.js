@@ -1,8 +1,10 @@
 let currentQuestion = 0;
 let questionTitle = document.getElementById("question-title");
 let choices = document.getElementById("choices");
-let startScreen = document.getElementById("start-screen");
-let quiz = document.getElementById("questions");
+const startScreen = document.getElementById("start-screen");
+const quiz = document.getElementById("questions");
+const endScreen = document.getElementById("end-screen");
+const scoreDisplay = document.getElementById("final-score");
 let score = 0;
 const questionChoices = ["answerA", "answerB", "answerC", "answerD"];
 
@@ -67,7 +69,6 @@ function renderQuestion() {
         button.addEventListener("click", submitAnswer)
         choices.appendChild(button);
     }
-    
 }
 
 
@@ -78,6 +79,13 @@ function submitAnswer(event) {
     } else {
         console.log("time down");
     }
+    currentQuestion++;
+    if (currentQuestion<Object.keys(questions).length) {
+        choices.textContent = "";
+        renderQuestion();    
+    } else {
+        endQuiz();
+    }
 
 }
 
@@ -85,4 +93,10 @@ function beginQuiz() {
     startScreen.setAttribute("class", "hide");
     quiz.classList.remove("hide");
     renderQuestion();
+}
+
+function endQuiz() {
+    quiz.setAttribute("class", "hide");
+    endScreen.classList.remove("hide");
+    scoreDisplay.textContent = `${score}`;
 }
