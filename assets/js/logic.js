@@ -3,6 +3,8 @@ let questionTitle = document.getElementById("question-title");
 let choices = document.getElementById("choices");
 let startScreen = document.getElementById("start-screen");
 let quiz = document.getElementById("questions");
+const questionChoices = ["answerA", "answerB", "answerC", "answerD"];
+
 
 let questions = {
     question1: {
@@ -48,18 +50,23 @@ let questions = {
 }
 
 function renderQuestion() {
-    if (currentQuestion<questions.length) {
-        let question = questions[currentQuestion][0];
+    //if (currentQuestion<questions.length) {
+        let questionNumbers = Object.keys(questions);
+        let question = questionNumbers[currentQuestion];
+        let questionData = questions[question];
+        console.log(questionData);
+        questionTitle.textContent = questionData.question;
         document.createElement("ol");
-        for (let i=0; i<4;i++) {
+        for (let i=0; i<questionChoices.length;i++) {
             let li = document.createElement("li");
-            li.textContent = questions[currentQuestion][i];
+            let answerOption = questionChoices[i];
+            li.textContent = questionData[answerOption];
             choices.appendChild(li);
         }
         
     }
     
-}
+//}
 
 function beginQuiz() {
     startScreen.setAttribute("class", "hide");
