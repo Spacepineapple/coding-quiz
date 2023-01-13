@@ -1,4 +1,4 @@
-const {questions} = require("./questions.js");
+import {questions} from "./questions.js";
 let currentQuestion = 0;
 let questionTitle = document.getElementById("question-title");
 let choices = document.getElementById("choices");
