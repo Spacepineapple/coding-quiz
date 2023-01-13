@@ -7,6 +7,8 @@ const endScreen = document.getElementById("end-screen");
 const scoreDisplay = document.getElementById("final-score");
 let score = 0;
 const questionChoices = ["answerA", "answerB", "answerC", "answerD"];
+let timeRemaining = 60;
+const timerEl = document.getElementById("time");
 
 let questions = {
     question1: {
@@ -91,6 +93,7 @@ function submitAnswer(event) {
 function beginQuiz() {
     startScreen.setAttribute("class", "hide");
     quiz.classList.remove("hide");
+    startTimer();
     renderQuestion();
 }
 
@@ -98,4 +101,17 @@ function endQuiz() {
     quiz.setAttribute("class", "hide");
     endScreen.classList.remove("hide");
     scoreDisplay.textContent = `${score}`;
+}
+
+function startTimer() {
+    setInterval(function () {
+        if (timeRemaining>0) {
+          timerEl.textContent = `${timeRemaining} seconds remaining`;
+          timeRemaining--;  
+        } else {
+          timerEl.textContent = "Time up!";
+          endQuiz();
+    
+        }
+      }, 1000);
 }
