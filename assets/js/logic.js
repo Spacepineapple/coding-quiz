@@ -2,8 +2,8 @@ const {questions} = require("./questions.js");
 let currentQuestion = 0;
 let questionTitle = document.getElementById("question-title");
 let choices = document.getElementById("choices");
-
-
+let startScreen = document.getElementById("start");
+let quiz = document.getElementById("questions");
 
 function renderQuestion() {
     if (currentQuestion<questions.length) {
@@ -17,4 +17,10 @@ function renderQuestion() {
         
     }
     
+}
+
+function beginQuiz() {
+    startScreen.setAttribute("class", "hide");
+    quiz.classList.remove("hide");
+    renderQuestion();
 }
