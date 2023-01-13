@@ -6,7 +6,6 @@ let quiz = document.getElementById("questions");
 let score = 0;
 const questionChoices = ["answerA", "answerB", "answerC", "answerD"];
 
-
 let questions = {
     question1: {
         question: "Which of the Following is not a JavaScript Primative?",
@@ -50,23 +49,37 @@ let questions = {
     }
 }
 
+const questionNumbers = Object.keys(questions);
+
+
 function renderQuestion() {
-    //if (currentQuestion<questions.length) {
-        let questionNumbers = Object.keys(questions);
-        let question = questionNumbers[currentQuestion];
-        let questionData = questions[question];
-        console.log(questionData);
-        questionTitle.textContent = questionData.question;
-        for (let i=0; i<questionChoices.length;i++) {
-            let button = document.createElement("button");
-            let answerOption = questionChoices[i];
-            button.textContent = `${i+1}. ${questionData[answerOption]}`;
-            choices.appendChild(button);
+    let question = questionNumbers[currentQuestion];
+    let questionData = questions[question];
+    let correct = questions[question]["correct"];
+    questionTitle.textContent = questionData.question;
+    for (let i=0; i<questionChoices.length;i++) {
+        let button = document.createElement("button");
+        let answerOption = questionChoices[i];
+        button.textContent = `${i+1}. ${questionData[answerOption]}`;
+        if (questionData[answerOption] === correct) {
+            button.setAttribute("class", "correct");
         }
-        
+        button.addEventListener("click", submitAnswer)
+        choices.appendChild(button);
     }
     
-//}
+}
+
+
+function submitAnswer(event) {
+    if (event.target.classList.contains("correct")) {
+        console.log("score up");
+        score+=10;
+    } else {
+        console.log("time down");
+    }
+
+}
 
 function beginQuiz() {
     startScreen.setAttribute("class", "hide");
