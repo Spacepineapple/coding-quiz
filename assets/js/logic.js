@@ -148,7 +148,6 @@ function endQuiz() {
         submitButton.addEventListener("click", submitInitials);    
     } else {
         startScreen.classList.remove("hide");
-        timeRemaining = 60;
     }
 }
 
@@ -166,11 +165,10 @@ let quizTimer = setInterval(function () {
     if (timeRemaining>0) {
       timeRemaining--;
       timerEl.textContent = `${timeRemaining} seconds remaining`;
-    } else {
+    } else if (startScreen.classList.contains("hidden")){
       //Otherwise change the time display to say "Time up!" and end the quiz 
       timerEl.textContent = "Time up!";
       endQuiz();
-
     }
   }, 1000);
 
