@@ -23,6 +23,8 @@ const timerEl = document.getElementById("time");
 let submitButton = document.getElementById("submit");
 //Get input area to allow player to enter their initials
 let initialsInput = document.getElementById("initials");
+//Create a feedback node to display correct/incorrect after each question
+const feedback = document.createElement("p");
 
 //Create questions object containing 5 questions for quiz
 let questions = {
@@ -115,19 +117,17 @@ function submitAnswer(event) {
 }
 
 function displayCorrect(answer) {
-    const feedback = document.createElement("p");
     feedback.textContent = `${answer}`;
     feedback.setAttribute("id", "feedback");
     choices.appendChild(feedback);
     let displayResult = setTimeout(function () {
-        choices.removeChild(feedback);
+        feedback.textContent = "";
     }, 3000);
 }
 
 function removeCorrect() {
-    const feedback = document.getElementById("feedback");
-    if (feedback) {
-        choices.removeChild(feedback);
+    if (feedback.textContent != "") {
+        feedback.textContent = "";
     }
 }
 
