@@ -94,13 +94,16 @@ function renderQuestion() {
 
 function submitAnswer(event) {
     if (event.target.classList.contains("correct")) {
-
+        const answer = "Correct";
+    } else {
         timeRemaining-=15;
+        const answer = "Incorrect";
     }
     currentQuestion++;
     if (currentQuestion<Object.keys(questions).length) {
         choices.textContent = "";
-        renderQuestion();    
+        renderQuestion();  
+        displayCorrect(answer);
     } else {
         endQuiz();
     }
