@@ -93,9 +93,7 @@ function renderQuestion() {
 
 
 function submitAnswer(event) {
-    if (event.target.classList.contains("correct")) {
-        score+=10;
-    } else {
+    if (!event.target.classList.contains("correct")) {
         timeRemaining-=15;
     }
     currentQuestion++;
@@ -120,6 +118,7 @@ function beginQuiz() {
 
 //End the quiz
 function endQuiz() {
+    score = timeRemaining;
     //Stop the timer
     timeRemaining = 0;
     //hide the quiz div
