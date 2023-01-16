@@ -5,7 +5,7 @@ let scores = Object.keys(highScores);
 let scoreArea = document.getElementById("highscores");
 
 for (let i=0; i<scores.length; i++) {
-    const li = document.createElement(li);
-    li.textContent = `${i+1} ${initials[i]} - ${scores[i]}`;
+    const li = document.createElement("li");
+    li.textContent = `${initials[i]} - ${scores[i]}`;
     scoreArea.appendChild(li);
 }
