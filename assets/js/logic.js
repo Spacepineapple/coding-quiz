@@ -154,20 +154,22 @@ function endQuiz() {
 function startTimer() {
     //Set the timer area to display the time remaining in seconds
     timerEl.textContent = `${timeRemaining} seconds remaining`;
-    //Repeat the following actions every second
-    let quizTimer = setInterval(function () {
-        //While there is time remaining, remove one second and update the time display
-        if (timeRemaining>0) {
-          timeRemaining--;
-          timerEl.textContent = `${timeRemaining} seconds remaining`;
-        } else {
-          //Otherwise change the time display to say "Time up!" and end the quiz 
-          timerEl.textContent = "Time up!";
-          endQuiz();
+    quizTimer;
     
-        }
-      }, 1000);
 }
+
+let quizTimer = setInterval(function () {
+    //While there is time remaining, remove one second and update the time display
+    if (timeRemaining>0) {
+      timeRemaining--;
+      timerEl.textContent = `${timeRemaining} seconds remaining`;
+    } else {
+      //Otherwise change the time display to say "Time up!" and end the quiz 
+      timerEl.textContent = "Time up!";
+      endQuiz();
+
+    }
+  }, 1000);
 
 //Get the high scores from local storage
 function getHighScores() {
