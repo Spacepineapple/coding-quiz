@@ -10,6 +10,7 @@ const questionChoices = ["answerA", "answerB", "answerC", "answerD"];
 let timeRemaining = 60;
 const timerEl = document.getElementById("time");
 let highScores = getHighScores();
+let submitButton = document.getElementById("submit");
 
 let questions = {
     question1: {
@@ -103,6 +104,7 @@ function endQuiz() {
     quiz.setAttribute("class", "hide");
     endScreen.classList.remove("hide");
     scoreDisplay.textContent = `${score}`;
+    submitButton.addEventListener("click", submitInitials);
 }
 
 function startTimer() {
@@ -122,17 +124,15 @@ function startTimer() {
 function getHighScores() {
     let highScores = JSON.parse(localStorage.getItem("highScores"));
     if (highScores === null) {
-        return
+        return null;
     } else {
         return highScores;
     }
 } 
 
-function setHighScores() {
-    let highScores = JSON.stringify(highScores);
-    if (highScores != null) {
-        localStorage.setItem("highScores", highScores);
-    }
+function setHighScores(scores) {
+    let stringScores = JSON.stringify(scores);
+    localStorage.setItem("highScores", stringScores);
 }
 
 function addScores(user, finalScore) {
@@ -157,7 +157,14 @@ function addScores(user, finalScore) {
         highScores = newHighScores;
     } else {
         //Need to check that these initials don't already exist
-        highScores[user] = finalScore;
+        highScores = {};
+        Object.assign(highScores, {user: finalScore});
     }
+    setHighScores(highScores);
+}
 
+function submitInitials(event) {
+    let initials = event.target.value;
+    addScores(initials, score);
+    window.location.assign("./highscores.html");
 }
