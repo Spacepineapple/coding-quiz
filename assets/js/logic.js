@@ -115,10 +115,11 @@ function displayCorrect(answer) {
     const feedback = document.createElement("p");
     feedback.textContent = `${answer}`;
     choices.appendChild(feedback);
-    setTimeout(function () {
-        if (choices) {
-            choices.removeChild(feedback);
-        }
+    if (displayResult) {
+        clearTimeout(displayResult);
+    }
+    let displayResult = setTimeout(function () {
+        choices.removeChild(feedback);
     }, 3000);
 }
 
@@ -154,8 +155,8 @@ function endQuiz() {
 //start a timer
 function startTimer() {
     //Set the timer area to display the time remaining in seconds
-    timerEl.textContent = `${timeRemaining} seconds remaining`;
     timeRemaining = 60;
+    timerEl.textContent = `${timeRemaining} seconds remaining`;
     quizTimer;
     
 }
