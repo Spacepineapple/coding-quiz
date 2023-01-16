@@ -102,7 +102,9 @@ function submitAnswer(event) {
     }
     currentQuestion++;
     if (currentQuestion<Object.keys(questions).length) {
-        removeCorrect();
+        if (currentQuestion>1) {
+            removeCorrect();
+        }
         choices.textContent = "";
         renderQuestion();  
         displayCorrect(answer);
