@@ -137,7 +137,7 @@ function endQuiz() {
     if (timeRemaining>0) {
         score = timeRemaining;
         //Stop the timer
-        timeRemaining = 0;
+        clearInterval(quizTimer);
         //display the end screen div
         endScreen.classList.remove("hide");
         //update the score area to show the player's score
@@ -155,7 +155,7 @@ function startTimer() {
     //Set the timer area to display the time remaining in seconds
     timerEl.textContent = `${timeRemaining} seconds remaining`;
     //Repeat the following actions every second
-    setInterval(function () {
+    let quizTimer = setInterval(function () {
         //While there is time remaining, remove one second and update the time display
         if (timeRemaining>0) {
           timeRemaining--;
