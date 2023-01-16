@@ -1,18 +1,30 @@
+//Set current question to 0 to keep track of question number
 let currentQuestion = 0;
-let questionTitle = document.getElementById("question-title");
-let choices = document.getElementById("choices");
+//Initialise score variable and set to 0
+let score = 0;
+//Create timer and set to one minute (60 seconds)
+let timeRemaining = 60;
+
+//Get page elements to facilitate display of quiz questions
+//Get question-title h2 to display question titles
+const questionTitle = document.getElementById("question-title");
+//Get choices div to display answer options
+const choices = document.getElementById("choices");
+//Get four page divs each to be unhidden as player reaches that stage of quiz
 const startScreen = document.getElementById("start-screen");
 const quiz = document.getElementById("questions");
 const endScreen = document.getElementById("end-screen");
 const scoreDisplay = document.getElementById("final-score");
-let score = 0;
+//Set questionChoices to simplify querying of questions object
 const questionChoices = ["answerA", "answerB", "answerC", "answerD"];
-let timeRemaining = 60;
+//Get time span to allow display of timeRemaining in page
 const timerEl = document.getElementById("time");
-//let highScores = getHighScores();
+//Get submit button to allow player to submit their score
 let submitButton = document.getElementById("submit");
+//Get input area to allow player to enter their initials
 let initialsInput = document.getElementById("initials");
 
+//Create questions object containing 5 questions for quiz
 let questions = {
     question1: {
         question: "Which of the Following is not a JavaScript Primative?",
@@ -51,19 +63,25 @@ let questions = {
         answerA: "An Object Property Function",
         answerB: "An Algorithm",
         answerC: "A Type of Loop",
-        answerD: "A Data Type"
-
+        answerD: "A Data Type",
+        correct: "An Object Property Function"
     }
 }
 
+//Get question numbers to facilitate change of questions
 const questionNumbers = Object.keys(questions);
 
-
+//Render each question to the quiz area
 function renderQuestion() {
+    //Get the current question
     let question = questionNumbers[currentQuestion];
+    //Get the data for this question from the object
     let questionData = questions[question];
+    //Get the correct answer
     let correct = questions[question]["correct"];
+    //Get the title of the question
     questionTitle.textContent = questionData.question;
+    //Iterate through each answer and add a button to submit each choice
     for (let i=0; i<questionChoices.length;i++) {
         let button = document.createElement("button");
         let answerOption = questionChoices[i];
