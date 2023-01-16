@@ -9,8 +9,9 @@ let score = 0;
 const questionChoices = ["answerA", "answerB", "answerC", "answerD"];
 let timeRemaining = 60;
 const timerEl = document.getElementById("time");
-let highScores = getHighScores();
+//let highScores = getHighScores();
 let submitButton = document.getElementById("submit");
+let initialsInput = document.getElementById("initials");
 
 let questions = {
     question1: {
@@ -136,7 +137,9 @@ function setHighScores(scores) {
 }
 
 function addScores(user, finalScore) {
+    let highScores = getHighScores();
     if (highScores != null) {
+        console.log("runs");
         let pastScores = Object.values(highScores);
         let pastUsers = Object.keys(highScores);
         x=null;
@@ -149,22 +152,29 @@ function addScores(user, finalScore) {
         if (x!=null) {
             pastScores.splice(x, 0, finalScore);
             pastUsers.splice(x, 0, user);
+        } else {
+            pastScores.push(finalScore);
+            pastUsers.push(user);
         }
         let newHighScores = {};
         for (let i=0; i<pastScores.length; i++) {
-            newHighScores[user] = finalScore;
+            newHighScores[pastUsers[i]] = pastScores[i];
         }
         highScores = newHighScores;
+        console.log(newHighScores);
     } else {
         //Need to check that these initials don't already exist
         highScores = {};
-        Object.assign(highScores, {user: finalScore});
+        highScores[user] = finalScore;
     }
     setHighScores(highScores);
+    console.log(highScores);
 }
 
 function submitInitials(event) {
-    let initials = event.target.value;
+    let initials = initialsInput.value;
+    console.log(initials);
+    console.log(score);
     addScores(initials, score);
     window.location.assign("./highscores.html");
 }
