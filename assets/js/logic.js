@@ -116,7 +116,9 @@ function displayCorrect(answer) {
     feedback.textContent = `${answer}`;
     choices.appendChild(feedback);
     setTimeout(function () {
-        choices.removeChild(feedback);
+        if (choices) {
+            choices.removeChild(feedback);
+        }
     }, 3000);
 }
 
