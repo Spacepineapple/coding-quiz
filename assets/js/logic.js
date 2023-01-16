@@ -73,13 +73,10 @@ const questionNumbers = Object.keys(questions);
 
 //Render each question to the quiz area
 function renderQuestion() {
-    //Get the current question
+    //Get the current question, data, correct answer and title:
     let question = questionNumbers[currentQuestion];
-    //Get the data for this question from the object
     let questionData = questions[question];
-    //Get the correct answer
     let correct = questions[question]["correct"];
-    //Get the title of the question
     questionTitle.textContent = questionData.question;
     //Iterate through each answer and add a button to submit each choice
     for (let i=0; i<questionChoices.length;i++) {
@@ -111,28 +108,42 @@ function submitAnswer(event) {
 
 }
 
+//Allow player to start the quiz
 function beginQuiz() {
+    //hide the start screen div
     startScreen.setAttribute("class", "hide");
+    //display the quiz div
     quiz.classList.remove("hide");
     startTimer();
     renderQuestion();
 }
 
+//End the quiz
 function endQuiz() {
+    //Stop the timer
     timeRemaining = 0;
+    //hide the quiz div
     quiz.setAttribute("class", "hide");
+    //display the end screen div
     endScreen.classList.remove("hide");
+    //update the score area to show the player's score
     scoreDisplay.textContent = `${score}`;
+    //allow the player to submit their initials through the submit button
     submitButton.addEventListener("click", submitInitials);
 }
 
+//start a timer
 function startTimer() {
+    //Set the timer area to display the time remaining in seconds
     timerEl.textContent = `${timeRemaining} seconds remaining`;
+    //Repeat the following actions every second
     setInterval(function () {
+        //While there is time remaining, remove one second and update the time display
         if (timeRemaining>0) {
           timeRemaining--;
           timerEl.textContent = `${timeRemaining} seconds remaining`;
         } else {
+          //Otherwise change the time display to say "Time up!" and end the quiz 
           timerEl.textContent = "Time up!";
           endQuiz();
     
@@ -140,59 +151,81 @@ function startTimer() {
       }, 1000);
 }
 
+//Get the high scores from local storage
 function getHighScores() {
+    //get highscores from local storage and turn into object
     let highScores = JSON.parse(localStorage.getItem("highScores"));
+    //if there are no highscores, set highscores to null
     if (highScores === null) {
         return null;
     } else {
+        //otherwise, return null
         return highScores;
     }
 } 
 
+//Save the high scores to local storage
 function setHighScores(scores) {
+    //convert scores into a string
     let stringScores = JSON.stringify(scores);
+    //save highscores to local storag
     localStorage.setItem("highScores", stringScores);
 }
 
+//add scores to the highscores object
 function addScores(user, finalScore) {
+    //get the highscores from local storage
     let highScores = getHighScores();
+    //if highscores already exist (i.e., are not null)
     if (highScores != null) {
-        console.log("runs");
+        //Get the existing values (i.e., current scores)
         let pastScores = Object.values(highScores);
+        //Get the existing keys (i.e., current users)
         let pastUsers = Object.keys(highScores);
+        //Create a variable to identify the index where finalScore should be added
         x=null;
+        //Compare each score with finalscore
         for (let i=0; i<pastScores.length; i++) {
             if (pastScores[i] < finalScore) {
+                //When finalscore is greater than the existing score, set x to
+                //that index
                 x=i;
+                //Stop looping when x is set
                 break;
             }
         }
+        //If there is an index at which the past score is less than the new score
         if (x!=null) {
+            //add the final score to the array of past scores at that index
             pastScores.splice(x, 0, finalScore);
+            //add the user to the array of past users at that index
             pastUsers.splice(x, 0, user);
         } else {
+            //otherwise simply add the score and user to the end of each array
             pastScores.push(finalScore);
             pastUsers.push(user);
         }
+        //Create a new, empty object
         let newHighScores = {};
+        //Iterate through the arrays and update the object using the arrays
         for (let i=0; i<pastScores.length; i++) {
             newHighScores[pastUsers[i]] = pastScores[i];
         }
+        //Update the highscores variable
         highScores = newHighScores;
-        console.log(newHighScores);
     } else {
-        //Need to check that these initials don't already exist
+        //Otherwise create an empty object and add user and score to it
         highScores = {};
         highScores[user] = finalScore;
     }
     setHighScores(highScores);
-    console.log(highScores);
 }
 
 function submitInitials(event) {
+    //Get the user's initials from the input area
     let initials = initialsInput.value;
-    console.log(initials);
-    console.log(score);
+    //Add their score and initials to the highscores object
     addScores(initials, score);
+    //Load the highscores page
     window.location.assign("./highscores.html");
 }
