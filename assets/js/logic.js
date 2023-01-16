@@ -93,7 +93,8 @@ function renderQuestion() {
 
 
 function submitAnswer(event) {
-    if (!event.target.classList.contains("correct")) {
+    if (event.target.classList.contains("correct")) {
+
         timeRemaining-=15;
     }
     currentQuestion++;
@@ -104,6 +105,15 @@ function submitAnswer(event) {
         endQuiz();
     }
 
+}
+
+function displayCorrect(answer) {
+    const feedback = document.createElement("p");
+    feedback.textContent(`${answer}`);
+    choices.appendChild(feedback);
+    setTimeout(function () {
+        choices.removeChild(feedback);
+    }, 3000);
 }
 
 //Allow player to start the quiz
