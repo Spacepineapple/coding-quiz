@@ -93,11 +93,12 @@ function renderQuestion() {
 
 
 function submitAnswer(event) {
+    let answer;
     if (event.target.classList.contains("correct")) {
-        const answer = "Correct";
+        answer = "Correct";
     } else {
         timeRemaining-=15;
-        const answer = "Incorrect";
+        answer = "Incorrect";
     }
     currentQuestion++;
     if (currentQuestion<Object.keys(questions).length) {
