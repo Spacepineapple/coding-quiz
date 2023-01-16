@@ -118,17 +118,22 @@ function beginQuiz() {
 
 //End the quiz
 function endQuiz() {
-    score = timeRemaining;
-    //Stop the timer
-    timeRemaining = 0;
     //hide the quiz div
     quiz.setAttribute("class", "hide");
-    //display the end screen div
-    endScreen.classList.remove("hide");
-    //update the score area to show the player's score
-    scoreDisplay.textContent = `${score}`;
-    //allow the player to submit their initials through the submit button
-    submitButton.addEventListener("click", submitInitials);
+    if (timeRemaining>0) {
+        score = timeRemaining;
+        //Stop the timer
+        timeRemaining = 0;
+        //display the end screen div
+        endScreen.classList.remove("hide");
+        //update the score area to show the player's score
+        scoreDisplay.textContent = `${score}`;
+        //allow the player to submit their initials through the submit button
+        submitButton.addEventListener("click", submitInitials);    
+    } else {
+        startScreen.classList.remove("hide");
+        timeRemaining = 60;
+    }
 }
 
 //start a timer
