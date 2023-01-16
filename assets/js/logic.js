@@ -115,11 +115,14 @@ function submitAnswer(event) {
 
 }
 
+//Display whether the answer given was correct or not
 function displayCorrect(answer) {
+    //Set the content of the feedback node to correct or incorrect
     feedback.textContent = `${answer}`;
-    feedback.setAttribute("id", "feedback");
     choices.appendChild(feedback);
+    //Clear any existing interval to allow the timer to restart
     clearInterval(answerTimer);
+    //Create a three second timer and after three seconds remove the feedback
     answerTimer = setInterval(function () {
         feedback.textContent = "";
     }, 3000);
