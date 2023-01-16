@@ -224,8 +224,15 @@ function addScores(user, finalScore) {
 function submitInitials(event) {
     //Get the user's initials from the input area
     let initials = initialsInput.value;
-    //Add their score and initials to the highscores object
-    addScores(initials, score);
-    //Load the highscores page
-    window.location.assign("./highscores.html");
+    let highscores = getHighScores();
+    //If a user with those initials already exists, request new initials
+    if (Object.keys(highScores).getItem(initials) != null && highScores[initials]===score) {
+        window.alert("Cannot set score. A score with those initials already exist \nPlease try different initials.")
+    } else {
+        //Add their score and initials to the highscores object
+        addScores(initials, score);
+        //Load the highscores page
+        window.location.assign("./highscores.html");
+
+    }
 }
