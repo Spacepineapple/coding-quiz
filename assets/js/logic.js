@@ -117,7 +117,7 @@ function displayCorrect(answer) {
     feedback.textContent = `${answer}`;
     feedback.setAttribute("id", "feedback");
     choices.appendChild(feedback);
-    let displayResult = setTimeout(function () {
+    let displayResult = setInterval(function () {
         feedback.textContent = "";
     }, 3000);
 }
