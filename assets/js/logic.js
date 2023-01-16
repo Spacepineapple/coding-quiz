@@ -102,6 +102,7 @@ function submitAnswer(event) {
     }
     currentQuestion++;
     if (currentQuestion<Object.keys(questions).length) {
+        removeCorrect();
         choices.textContent = "";
         renderQuestion();  
         displayCorrect(answer);
@@ -114,13 +115,18 @@ function submitAnswer(event) {
 function displayCorrect(answer) {
     const feedback = document.createElement("p");
     feedback.textContent = `${answer}`;
+    feedback.setAttribute("id", "feedback");
     choices.appendChild(feedback);
-    if (displayResult) {
-        clearTimeout(displayResult);
-    }
     let displayResult = setTimeout(function () {
         choices.removeChild(feedback);
     }, 3000);
+}
+
+function removeCorrect() {
+    const feedback = document.getElementById("feedback");
+    if (feedback) {
+        choices.removeChild(feedback);
+    }
 }
 
 //Allow player to start the quiz
