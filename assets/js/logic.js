@@ -125,12 +125,6 @@ function displayCorrect(answer) {
     }, 3000);
 }
 
-function removeCorrect() {
-    if (feedback.textContent != "") {
-        feedback.textContent = "";
-    }
-}
-
 //Allow player to start the quiz
 function beginQuiz() {
     //hide the start screen div
