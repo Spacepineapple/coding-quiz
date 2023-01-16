@@ -3,7 +3,7 @@ let currentQuestion = 0;
 //Initialise score variable and set to 0
 let score = 0;
 //Create timer and set to one minute (60 seconds)
-let timeRemaining = 60;
+let timeRemaining = 0;
 
 //Get page elements to facilitate display of quiz questions
 //Get question-title h2 to display question titles
@@ -156,6 +156,7 @@ function endQuiz() {
 function startTimer() {
     //Set the timer area to display the time remaining in seconds
     timerEl.textContent = `${timeRemaining} seconds remaining`;
+    timeRemaining = 60;
     quizTimer;
     
 }
