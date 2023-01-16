@@ -25,6 +25,8 @@ let submitButton = document.getElementById("submit");
 let initialsInput = document.getElementById("initials");
 //Create a feedback node to display correct/incorrect after each question
 const feedback = document.createElement("p");
+//Initialise an empty variable to hold the timer for displaying answer feedback
+let answerTimer;
 
 //Create questions object containing 5 questions for quiz
 let questions = {
@@ -117,7 +119,8 @@ function displayCorrect(answer) {
     feedback.textContent = `${answer}`;
     feedback.setAttribute("id", "feedback");
     choices.appendChild(feedback);
-    let displayResult = setInterval(function () {
+    clearInterval(answerTimer);
+    answerTimer = setInterval(function () {
         feedback.textContent = "";
     }, 3000);
 }
