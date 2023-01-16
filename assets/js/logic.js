@@ -113,7 +113,7 @@ function submitAnswer(event) {
 
 function displayCorrect(answer) {
     const feedback = document.createElement("p");
-    feedback.textContent(`${answer}`);
+    feedback.textContent = `${answer}`;
     choices.appendChild(feedback);
     setTimeout(function () {
         choices.removeChild(feedback);
