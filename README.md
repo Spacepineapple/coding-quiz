@@ -16,3 +16,8 @@
 ## Usage <a id="usage"></a>
 
 ## Credits <a id="credits"></a>
+This project was completed by myself -- Neal Reeves. The content contained in
+the logic.js and scores.js files was written entirely by myself. However, this
+project also used starter code provided by edX as part of their Front End Web
+Development bootcamp. This included the contents of the index.html,
+highscores.html and styles.css files.
