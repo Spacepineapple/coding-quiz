@@ -263,7 +263,7 @@ function submitInitials(event) {
     let initials = initialsInput.value;
     let highScores = getHighScores();
     //If a user with those initials and that score already exists, request new initials
-    if (initials in highScores) {
+    if (highScores != null) {
         if (highScores[initials]===score) {
             window.alert("Cannot set score. A score with those initials already exist \nPlease try different initials.")    
     }
