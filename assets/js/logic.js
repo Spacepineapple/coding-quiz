@@ -262,8 +262,8 @@ function submitInitials(event) {
     //Get the user's initials from the input area
     let initials = initialsInput.value;
     let highScores = getHighScores();
-    //If a user with those initials already exists, request new initials
-    if (Object.keys(highScores).getItem(initials) != null && highScores[initials]===score) {
+    //If a user with those initials and that score already exists, request new initials
+    if (highScores[initials]===score) {
         window.alert("Cannot set score. A score with those initials already exist \nPlease try different initials.")
     } else {
         //Add their score and initials to the highscores object
