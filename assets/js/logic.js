@@ -163,8 +163,10 @@ function endQuiz() {
         //allow the player to submit their initials through the submit button
         submitButton.addEventListener("click", submitInitials);    
     } else {
-        timerEl.textContent = "Time up!";
-        startScreen.classList.remove("hide");
+        if (startScreen.classList.contains("hide")) {
+            timerEl.textContent = "Time up!";
+            startScreen.classList.remove("hide");
+        }
     }
 }
 
