@@ -25,5 +25,6 @@ clearButton.addEventListener("click", clearStorage);
 //Remove files from localStorage
 function clearStorage() {
     localStorage.clear();
+    scoreArea.innerHTML = "";
 }
 
