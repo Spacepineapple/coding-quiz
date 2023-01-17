@@ -10,7 +10,7 @@
 ## URL <a id="url"></a>
 
 A live version of this page has been deployed at
-https://spacepineapple.github.io/quiz-game/
+https://spacepineapple.github.io/coding-quiz/
 
 ## Description <a id="description"></a>
 
