@@ -163,6 +163,7 @@ function endQuiz() {
         //allow the player to submit their initials through the submit button
         submitButton.addEventListener("click", submitInitials);    
     } else {
+        timerEl.textContent = "Time up!";
         startScreen.classList.remove("hide");
     }
 }
@@ -182,8 +183,7 @@ let quizTimer = setInterval(function () {
       timeRemaining--;
       timerEl.textContent = `${timeRemaining} seconds remaining`;
     } else {
-      //Otherwise change the time display to say "Time up!" and end the quiz 
-      timerEl.textContent = "Time up!";
+      //Otherwise end the quiz 
       endQuiz();
     }
   }, 1000);
