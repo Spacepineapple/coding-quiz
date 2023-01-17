@@ -97,19 +97,29 @@ function renderQuestion() {
 
 
 function submitAnswer(event) {
+    //Define an empty variable to allow use for later function call
     let answer;
+    //If user's answer is correct, set answer to "Correct"
     if (event.target.classList.contains("correct")) {
         answer = "Correct";
     } else {
+        //Otherwise remove 15 seconds from the timer
         timeRemaining-=15;
+        //And set answer to "Incorrect"
         answer = "Incorrect";
     }
+    //Move to next question
     currentQuestion++;
+    //Check if there are questions remaining
     if (currentQuestion<Object.keys(questions).length) {
+        //Remove the existing answers from the page
         choices.textContent = "";
+        //Render a new question
         renderQuestion();  
+        //Display whether the previous question was correct
         displayCorrect(answer);
     } else {
+        //Otherwise end the quiz
         endQuiz();
     }
 
