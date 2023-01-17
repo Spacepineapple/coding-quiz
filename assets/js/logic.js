@@ -181,7 +181,7 @@ let quizTimer = setInterval(function () {
     if (timeRemaining>0) {
       timeRemaining--;
       timerEl.textContent = `${timeRemaining} seconds remaining`;
-    } else if (startScreen.classList.contains("hidden")){
+    } else {
       //Otherwise change the time display to say "Time up!" and end the quiz 
       timerEl.textContent = "Time up!";
       endQuiz();
