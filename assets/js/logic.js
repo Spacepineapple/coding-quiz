@@ -103,8 +103,8 @@ function submitAnswer(event) {
     if (event.target.classList.contains("correct")) {
         answer = "Correct";
     } else {
-        //Otherwise remove 15 seconds from the timer
-        timeRemaining-=15;
+        //Otherwise remove 10 seconds from the timer
+        timeRemaining-=10;
         //And set answer to "Incorrect"
         answer = "Incorrect";
     }
