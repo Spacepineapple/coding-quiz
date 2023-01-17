@@ -9,6 +9,9 @@
 
 ## URL <a id="url"></a>
 
+A live version of this page has been deployed at
+https://spacepineapple.github.io/quiz-game/
+
 ## Description <a id="description"></a>
 
 This page was created as my solution to the sixth challenge task of a web
@@ -49,11 +52,23 @@ quiz end screen can be seen in the following image:
 Should a user fail to complete the quiz by running out of time and/or getting
 enough questions wrong, the user will achieve a score of 0. If this happens, the
 user will not be prompted for their initials and will instead be shown the
-following screen:
+start screen and invited to play the game again.
 
 ## Installation <a id="installation"></a>
 
+All of the required files are included in this repository and no installation
+should be required. The index.html file should render in any modern browser on
+both a desktop or mobile device. 
+
 ## Usage <a id="usage"></a>
+
+To play this game, follow the URL provided above. After opening the page, click
+the "Start Quiz" button and answer each of the five questions. At the end of the
+game, if you achieve a score greater than 0, you will be prompted to save your
+score. At this point, type your initials in the textbox provided and click the
+"Submit" button. You can view your highscores by clicking the link to the
+highscore page, while the scores can be removed by clicking the "Clear
+HighScores" button.
 
 ## Credits <a id="credits"></a>
 This project was completed by myself -- Neal Reeves. The content contained in
